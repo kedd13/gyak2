@@ -8,6 +8,7 @@ package gyak2;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -37,6 +38,8 @@ public class Vezerles {
         adatKiiras();
         jubileum();
         eredmenyKiiras();
+        kedvezmenyOsszeg();
+        rendezve();
     }
 
     private void adatBevitel() {
@@ -121,6 +124,31 @@ public class Vezerles {
             for (Rendezveny rendezveny : resztvevo.getRendezvenyek()) {
                 System.out.println(rendezveny);
             }
+        }
+    }
+
+    private void kedvezmenyOsszeg() {
+        int ossz = 0;
+        System.out.println("\n Kedvezményezettek:");
+        for (Resztvevo resztvevo : resztvevok) {
+            if(resztvevo instanceof PTEsResztvevo){
+                for (Rendezveny rendezveny : resztvevo.getRendezvenyek()) {
+                    ossz += rendezveny.getJegyAr() -
+                            resztvevo.reszveteliDij(rendezveny);
+                }
+                System.out.printf("\nA %s azonosítójú PTE polgár össz kedvezménye: %d Ft",
+                                  ((PTEsResztvevo) resztvevo).getPteAzonosito(),
+                                    ossz);
+            }
+        }
+    }
+
+    private void rendezve() {
+        System.out.println("\nRendezve:");
+        
+        Collections.sort(rendezvenyek, new BevetelSzerint());
+        for (Rendezveny rendezveny : rendezvenyek) {
+            System.out.println(rendezveny + " bevétel: " + rendezveny.getBevetel() + " Ft");
         }
     }
 }

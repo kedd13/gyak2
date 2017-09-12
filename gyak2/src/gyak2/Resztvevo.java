@@ -22,28 +22,26 @@ public class Resztvevo {
         this.nev = nev;
     }
     
-    public boolean belep(Rendezveny rendezveny){
+    public boolean belephet(Rendezveny rendezveny){
         int reszveteliDij = this.reszveteliDij(rendezveny);
-        if(reszveteliDij <= penz){
-            this.fizet(reszveteliDij);
-            this.rendezvenyek.add(rendezveny);
-            return true;
-        }
-        return false;
+        return reszveteliDij <= penz;
     }
 
     protected int reszveteliDij(Rendezveny rendezveny) {
         return rendezveny.getJegyAr();
     }    
     
-    private void fizet(int reszveteliDij) {
+    public void fizet(int reszveteliDij) {
         if(this.penz >= reszveteliDij) this.penz -= reszveteliDij;
     }
 
     public void penztKap(int penz) {
         this.penz += penz;
     }
-    
+
+    void resztVesz(Rendezveny rendezveny) {
+        rendezvenyek.add(rendezveny);
+    }    
     @Override
     public String toString() {
         return nev;
@@ -56,5 +54,7 @@ public class Resztvevo {
     public List<Rendezveny> getRendezvenyek() {
         return new ArrayList<>(rendezvenyek);
     }
+
+
 
 }
