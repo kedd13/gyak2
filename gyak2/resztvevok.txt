@@ -1,0 +1,10 @@
+﻿Béla
+Gizi
+Anna;PTE001
+Jani;PTE001
+Péter
+Géza;PTE003
+Juli
+Kata
+Ervin;PTE004
+Márta
