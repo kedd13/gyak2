@@ -14,7 +14,7 @@ import javax.swing.table.TableModel;
 
 /**
  *
- * @author a
+ * @author :)
  */
 class Ablak extends JFrame{
     private int szelesseg;
