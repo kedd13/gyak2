@@ -40,6 +40,7 @@ public class Vezerles {
         eredmenyKiiras();
         kedvezmenyOsszeg();
         rendezve();
+        ablakba();
     }
 
     private void adatBevitel() {
@@ -128,9 +129,10 @@ public class Vezerles {
     }
 
     private void kedvezmenyOsszeg() {
-        int ossz = 0;
+        int ossz;
         System.out.println("\n Kedvezményezettek:");
         for (Resztvevo resztvevo : resztvevok) {
+            ossz = 0;
             if(resztvevo instanceof PTEsResztvevo){
                 for (Rendezveny rendezveny : resztvevo.getRendezvenyek()) {
                     ossz += rendezveny.getJegyAr() -
@@ -151,5 +153,16 @@ public class Vezerles {
             System.out.println(rendezveny + " bevétel: " + rendezveny.getBevetel() + " Ft");
         }
     }
+
+    private void ablakba() {
+       int szelesseg = 600, magassag = 300;
+        String cim = "Jubileumi rendezvények";
+        Ablak ablak = new Ablak(szelesseg, magassag, cim);
+        String[] oszlopNevek = {"Cím","Időpont","Jegyár (Ft)","Résztvevőszám","Bevétel (Ft)"};
+        ablak.ablakbaIr(rendezvenyek,oszlopNevek);
+        
+//        ablak.setVisible(true);
+    }
+    
 }
 
